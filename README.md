@@ -8,9 +8,9 @@ This is an application to generate random hands of *cards* representing characte
 
 It is a singlepage HTML5 and JavaScript application, using the awesome AngularJS framework.
 This is the structure :
-- The **index.html** file is the root of the application. It loads scripts and css files and places a container for the views. These views are displayed using the [ngRoute](https://docs.angularjs.org/api/ngRoute "AngularJS Documentation for ngRoute") module.
+- The **index.html** file is the root of the application. It loads scripts and css files and places a container for the views. These views are displayed using the AngularJS [ngRoute](https://docs.angularjs.org/api/ngRoute "AngularJS Documentation for ngRoute") module.
 - The **views** folder contains the html view files.
-- The **app.js** file contains the application logic (i.e. the pure JavaScript functions, such as random pickers, as well as AngularJS modules, controllers, filters...
+- The **app.js** file contains the application logic (i.e. the pure JavaScript functions, such as random pickers, as well as AngularJS modules, controllers, filters...)
 
 
 ## License

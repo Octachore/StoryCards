@@ -1,0 +1,65 @@
+<div class="container">
+	<div class="row">
+		<h1>Tarot des contes</h1>
+	</div>
+    <div>
+	    <h6><strong>Protagoniste :</strong> {{tarot.story.firstCharacterGender === "male" ? tarot.story.firstCharacter.maleName : tarot.story.firstCharacter.femaleName | lowercase}}</h6>
+	    <h6><strong>Antagoniste :</strong> {{tarot.story.secondCharacterGender === "male" ? tarot.story.secondCharacter.maleName : tarot.story.secondCharacter.femaleName | lowercase}}</h6>
+	    <h6><strong>Objet :</strong> {{tarot.story.object}}</h6>
+	    <h6><strong>Lieu :</strong> {{tarot.story.place}}</h6>
+		</div>
+		<div class="alert alert-success" role="alert">
+			<strong>{{tarot.story.firstCharacterGender === "male" ? tarot.story.firstCharacter.maleName : tarot.story.firstCharacter.femaleName}}</strong> contre <strong>{{tarot.story.secondCharacterGender === "male" ? tarot.story.secondCharacter.maleName : tarot.story.secondCharacter.femaleName | lowercase}}</strong> avec <strong>{{tarot.story.object}} {{tarot.story.place}}.</strong>
+		</div>
+		<button type="button" class="btn btn-primary" ng-click="makeStory()">Tirer les cartes !</button>
+		<a class="btn btn-default" href="#/cards">Cartes personnelles...</a>
+
+		<div class="checkbox" ng-init="checked=false" ng-model="checked" ng-click="cheat(checked)">
+		  <label>
+		    <input type="checkbox" ng-model="checked"> Je veux tricher
+		  </label>
+		  <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+		  	<div class="row">
+				  <div class="col-md-3">
+				  	<h4>Protagoniste</h4>
+			    	<p>Définir le genre : 
+			    		<select ng-model="gender" ng-options="gender as gender.label for gender in genders" ng-change="setFirstCharacterGender(gender)">
+			    			<option value="">Aléatoire</option>
+			    		</select>
+			    	</p>
+			    	<p>Définir le personnage : </p>
+						<select ng-model="character" ng-options="character as (character | firstCharacterDisplay) for character in characters" ng-change="setFirstCharacter(character)" style="width:100%;max-width:90%;">
+							<option value="">Aléatoire</option>
+						</select>
+				  </div>
+				  <div class="col-md-3">
+				  	<h4>Antagoniste</h4>
+			    	<p>Définir le genre : 
+			    		<select ng-model="gender2" ng-options="gender2 as gender2.label for gender2 in genders" ng-change="setSecondCharacterGender(gender2)">
+			    			<option value="">Aléatoire</option>
+			    		</select>
+			    	</p>
+			    	<p>Définir le personnage : </p>
+						<select ng-model="character2" ng-options="character2 as (character2 | secondCharacterDisplay) for character2 in characters" ng-change="setSecondCharacter(character2)" style="width:100%;max-width:90%;">
+							<option value="">Aléatoire</option>
+						</select>
+				  </div>
+				  <div class="col-md-3">
+				  	<h4>Objet</h4>
+			    	<p>Définir l'objet : </p>
+			    	<select ng-model="object" ng-options="object as object for object in objects" ng-change="setObject(object)" style="width:100%;max-width:90%;">
+							<option value="">Aléatoire</option>
+						</select>
+				  </div>
+				  <div class="col-md-3">
+				  	<h4>Lieu</h4>
+			    	<p>Définir le lieu : </p>
+			    	<select ng-model="place" ng-options="place as place for place in places" ng-change="setPlace(place)" style="width:100%;max-width:90%;">
+							<option value="">Aléatoire</option>
+						</select>
+				  </div>
+				</div>
+		  </div>
+	</div>
+
+</div>	

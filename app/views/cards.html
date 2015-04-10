@@ -1,0 +1,32 @@
+<div class="container">
+	
+	<div class="row">
+		<div class="col-md-6">
+			<h1>Tarot des contes</h1>
+			<h3>Cartes personnelles</h3>
+			<div class="alert alert-info" role="alert">Rafraichir la page pour réinitialiser les données.</div>
+		</div>
+  	<h1 class="col-md-6"><span class="pull-right"><a class="btn btn-link" href="#/">Retour</a></span></h1>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Personnages</h4>
+			<textarea id="characterTextArea" class="form-control" rows="13" ng-model="characterTextArea"></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<h4>Objets</h4>
+			<textarea id="objectTextArea" class="form-control" rows="7" ng-model="objectTextArea"></textarea>
+		</div>
+		<div class="col-md-6">
+			<h4>Lieux</h4>
+			<textarea id="placeTextArea" class="form-control" rows="7" ng-model="placeTextArea"></textarea>
+		</div>
+	</div>
+	<div style="margin-top:10px">
+		<button type="button" class="btn btn-primary center-block" ng-click="validate()">Valider</button>
+	</div>
+
+</div>	

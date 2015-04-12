@@ -101,11 +101,9 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller('mainController', function($scope) {
-    //$scope.message = 'Everyone come and see how good I look!';
-});
 
 app.controller('TarotController', function($scope) {
+	$scope.date = new Date();
 	populate();
 	$scope.makeStory = function(){
 		makeStory();

@@ -77,9 +77,9 @@ app.controller('TarotController', function($scope, storyService) {
 		cheat(isChecked);
 	}
 	this.story = story;
-	$scope.characters = characters;
-	$scope.objects = objects;
-	$scope.places = places;
+	$scope.characters = data_characters;
+	$scope.objects = data_objects;
+	$scope.places = data_places;
 	$scope.genders = genders;
 });
 

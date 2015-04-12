@@ -1,0 +1,68 @@
+{
+    "characters": [
+        {
+            "maleName": "Un scientifique",
+            "femaleName": "Une scientifique"
+        },
+        {
+            "maleName": "Un prince",
+            "femaleName": "Une princesse"
+        },
+        {
+            "maleName": "Un policier",
+            "femaleName": "Une policière"
+        },
+        {
+            "maleName": "Un journaliste",
+            "femaleName": "Une journaliste"
+        },
+        {
+            "maleName": "Un médecin",
+            "femaleName": "Une médecin"
+        },
+        {
+            "maleName": "Un superhéros",
+            "femaleName": "Une superhéroïne"
+        },
+        {
+            "maleName": "Un robot fou",
+            "femaleName": "Une robot folle"
+        },
+        {
+            "maleName": "Un dragon",
+            "femaleName": "Une dragonne"
+        },
+        {
+            "maleName": "Un voleur",
+            "femaleName": "Une voleuse"
+        },
+        {
+            "maleName": "Un politicien",
+            "femaleName": "Une politicienne"
+        },
+        {
+            "maleName": "Un zombie",
+            "femaleName": "Une zombie"
+        },
+        {
+            "maleName": "Un chaton diabolique du chaos",
+            "femaleName": "Une chatonne diabolique du chaos"
+        }
+    ],
+    "places": [
+        "dans une forêt",
+        "sur la Lune",
+        "dans un cimetière",
+        "dans un laboratoire",
+        "dans un château",
+        "dans un bar ou une taverne"
+    ],
+    "objects": [
+        "un miroir ou un poudrier",
+        "une statuette",
+        "un filtre ou une potion",
+        "un bijou",
+        "une épée",
+        "un livre ou un grimoire"
+    ]
+}

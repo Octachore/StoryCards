@@ -1,8 +1,7 @@
-// ------------ Fields ------------
-var data_characters;
-var data_places;
-var data_objects;
-var test;
+// ------------ Data fields ------------
+var data_characters = null;
+var data_places = null;
+var data_objects = null;
 
 // ------------ Fields ------------
 var characters;
@@ -137,9 +136,12 @@ function characterDisplay(character, gender){
 function initData($scope, storyService) {
     var storyDataPromise = storyService.getData();
     storyDataPromise.then(function(result) { 
-       data_characters = result.characters;
-       data_objects = result.objects;
-       data_places = result.places;
+    	if(data_characters == null)
+       	data_characters = result.characters;
+      if(data_objects == null)
+       	data_objects = result.objects;
+      if(data_places == null)
+       	data_places = result.places;
        makeStory();
 	    });
 	}

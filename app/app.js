@@ -1,60 +1,8 @@
 // ------------ Fields ------------
-data_characters = [
-	{
-		maleName: 'Un scientifique',
-		femaleName: 'Une scientifique',
-	},
-	{
-		maleName: 'Un prince',
-		femaleName: 'Une princesse',
-	},
-	{
-		maleName: 'Un policier',
-		femaleName: 'Une policière',
-	},
-	{
-		maleName: 'Un journaliste',
-		femaleName: 'Une journaliste',
-	},
-	{
-		maleName: 'Un médecin',
-		femaleName: 'Une médecin',
-	},
-	{
-		maleName: 'Un superhéros',
-		femaleName: 'Une superhéroïne',
-	},
-	{
-		maleName: 'Un robot fou',
-		femaleName: 'Une robot folle',
-	},
-	{
-		maleName: 'Un dragon',
-		femaleName: 'Une dragonne',
-	},
-	{
-		maleName: 'Un voleur',
-		femaleName: 'Une voleuse',
-	},
-	{
-		maleName: 'Un politicien',
-		femaleName: 'Une politicienne',
-	},
-	{
-		maleName: 'Un zombie',
-		femaleName: 'Une zombie',
-	},
-	{
-		maleName: 'Un chaton diabolique du chaos',
-		femaleName: 'Une chatonne diabolique du chaos',
-	}
-];
-
-
-data_places = ['dans une forêt', 'sur la Lune', 'dans un cimetière', 'dans un laboratoire', 'dans un château', 'dans un bar ou une taverne'];
-
-
-data_objects = ['un miroir ou un poudrier', 'une statuette', 'un filtre ou une potion', 'un bijou', 'une épée', 'un livre ou un grimoire'];
+var data_characters;
+var data_places;
+var data_objects;
+var test;
 
 // ------------ Fields ------------
 var characters;
@@ -101,12 +49,10 @@ app.config(function($routeProvider) {
         });
 });
 
-app.controller('mainController', function($scope) {
-    //$scope.message = 'Everyone come and see how good I look!';
-});
 
-app.controller('TarotController', function($scope) {
-	populate();
+app.controller('TarotController', function($scope, storyService) {
+	initData($scope, storyService);
+	$scope.date = new Date();
 	$scope.makeStory = function(){
 		makeStory();
 	}
@@ -136,7 +82,6 @@ app.controller('TarotController', function($scope) {
 	$scope.objects = objects;
 	$scope.places = places;
 	$scope.genders = genders;
-	makeStory();
 });
 
 app.controller('CardsController', function($scope, $location) {
@@ -153,7 +98,15 @@ app.controller('CardsController', function($scope, $location) {
     }
 });
 
+app.factory('storyService', function($http) {
 
+    var getData = function() {
+        return $http.get('defaultStoryData.json').then(function(result){
+            return result.data;
+        });
+    };
+    return { getData: getData };
+});
 
 app.filter('firstCharacterDisplay', function() {
   return function(character) {
@@ -180,6 +133,16 @@ function characterDisplay(character, gender){
   }
 }
 // ------------ Utilities ------------
+
+function initData($scope, storyService) {
+    var storyDataPromise = storyService.getData();
+    storyDataPromise.then(function(result) { 
+       data_characters = result.characters;
+       data_objects = result.objects;
+       data_places = result.places;
+       makeStory();
+	    });
+	}
 
 function selectCard(array){
 	var selectedCardId = Math.floor(Math.random()*array.length);

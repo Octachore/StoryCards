@@ -1,6 +1,6 @@
 #StoryCards
 
-[See live demo.](http://tarotdescontes.octadev.fr/#/ "StoryCards (Tarot des contes) live demo")
+[See live demo.](http://octachore.github.io/StoryCards/app/ "StoryCards (Tarot des contes) live demo")
 
 ## Description
 

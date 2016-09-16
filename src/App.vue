@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style src="./styles/semantic/dist/semantic.css"></style>
+<style src="../static/semantic.css"></style>
 
 <style>
 /*html {

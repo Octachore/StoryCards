@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Selector from './card/Selector'
+import Selector from './Selector'
 
 export default {
   components: {

@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1 class="ui orange header">
-      <img class="ui image" src="../assets/logo.png">
+      <img class="ui image" src="../../static/logo.png">
       <div class="content">
         {{ msg }}
       </div>

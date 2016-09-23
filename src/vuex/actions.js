@@ -1,4 +1,5 @@
 export const setConstraint = function (store, type, value) {
+  if (value === 'null') value = null
   store.dispatch('CONSTRAINT', type, value)
 }
 

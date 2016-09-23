@@ -1,7 +1,7 @@
 <template>
   <div class="selector">
     <select :title="title" class="ui fluid dropdown" @change="selectionChanged" v-model="selected">
-      <option value="" disabled selected>{{ title }}</option>
+      <option value="null" selected>-- {{ title }} --</option>
       <option v-for="item in data" :value="$index">{{ item | capitalize }}</option>
     </select>
   </div>

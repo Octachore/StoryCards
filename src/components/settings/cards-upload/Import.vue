@@ -32,6 +32,11 @@
       'cards-upload': function () {
         this.showModal()
       }
+    },
+    ready: function () {
+      $('.ui.modal').modal({
+        inverted: true
+      })
     }
   }
 </script>

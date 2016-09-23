@@ -17,41 +17,16 @@ export default {
     Constraints,
     Import
   },
-  data () {
-    return {
-      display: false
-    }
-  },
   events: {
     'display-constraints-toggle': function () {
-      console.log('event received in parent')
       this.$broadcast('display-constraint-toggle')
     },
     'cards-upload': function () {
       this.$broadcast('cards-upload')
+    },
+    'constraint': function (constraint, value) {
+      console.dir(value)
     }
-  },
-  ready: function () {
-    $('.ui.button.toggle').state()
-    $('.button.constraints').popup({
-      position: 'left center',
-      inline: true,
-      delay: {
-        show: 500,
-        hide: 300
-      }
-    })
-    $('.button.custom').popup({
-      position: 'right center',
-      inline: true,
-      delay: {
-        show: 500,
-        hide: 300
-      }
-    })
-    $('.ui.modal').modal({
-      inverted: true
-    })
   }
 }
 </script>

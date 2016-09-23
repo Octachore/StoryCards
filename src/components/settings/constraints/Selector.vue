@@ -1,18 +1,32 @@
 <template>
   <div class="selector">
-    <select v-bind:name="name" class="ui fluid dropdown">
-      <option value="">{{ name }}</option>
-      <option v-for="item in data" value="item">{{ item | capitalize }}</option>
+    <select :title="title" class="ui fluid dropdown" @change="selectionChanged" v-model="selected">
+      <option value="" disabled selected>{{ title }}</option>
+      <option v-for="item in data" :value="$index">{{ item | capitalize }}</option>
     </select>
   </div>
 </template>
 
 <script>
+import { setConstraint } from '../../../vuex/actions.js'
+
 export default {
-  ready: function () {
-    $('.ui.dropdown').dropdown()
+  data () {
+    return {
+      selected: 'nothing'
+    }
   },
-  props: ['name', 'data']
+  props: ['title', 'data', 'constraint'],
+  methods: {
+    selectionChanged: function () {
+      this.setConstraint(this.constraint, this.selected)
+    }
+  },
+  vuex: {
+    actions: {
+      setConstraint: setConstraint
+    }
+  }
 }
 </script>
 

@@ -18,6 +18,25 @@
       uploadCards: function () {
         this.$dispatch('cards-upload')
       }
+    },
+    ready: function () {
+      $('.ui.button.toggle').state()
+      $('.button.constraints').popup({
+        position: 'left center',
+        inline: true,
+        delay: {
+          show: 500,
+          hide: 300
+        }
+      })
+      $('.button.custom').popup({
+        position: 'right center',
+        inline: true,
+        delay: {
+          show: 500,
+          hide: 300
+        }
+      })
     }
   }
 </script>

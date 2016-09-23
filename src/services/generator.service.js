@@ -2,92 +2,152 @@ var au = require('../utils/array-utils')
 var ru = require('../utils/random-utils')
 
 module.exports = {
-  generate () {
-    var protagonist = au.pickRandom(protagonists)
-    var weapon = au.pickRandom(weapons)
-    var antagonist = au.pickRandom(antagonists)
-    var place = au.pickRandom(places)
-
+  generate (constraints, appliedConstraints) {
     return {
-      protagonist: ru.random(1) > 0 ? protagonist.male : protagonist.female,
-      weapon: weapon,
-      antagonist: ru.random(1) > 0 ? antagonist.male : antagonist.female,
-      place: place
+      protagonist: getValue('protagonist', constraints, appliedConstraints),
+      weapon: getValue('weapon', constraints, appliedConstraints),
+      antagonist: getValue('antagonist', constraints, appliedConstraints),
+      place: getValue('place', constraints, appliedConstraints)
     }
   },
-  getProtagonists: () => protagonists,
-  getWeapons: () => weapons,
-  getAntagonists: () => antagonists,
-  getPlaces: () => places
+  getProtagonists: () => data.protagonists,
+  getWeapons: () => data.weapons,
+  getAntagonists: () => data.antagonists,
+  getPlaces: () => data.places
 }
 
-var protagonists = [
-  {
-    male: 'Un scientifique',
-    female: 'Une scientifique'
-  },
-  {
-    male: 'Un prince',
-    female: 'Une princesse'
-  },
-  {
-    male: 'Un policier',
-    female: 'Une policière'
-  },
-  {
-    male: 'Un journaliste',
-    female: 'Une journaliste'
-  },
-  {
-    male: 'Un médecin',
-    female: 'Une médecin'
-  },
-  {
-    male: 'Un superhéros',
-    female: 'Une superhéroïne'
-  },
-  {
-    male: 'Un robot fou',
-    female: 'Une robot folle'
-  },
-  {
-    male: 'Un dragon',
-    female: 'Une dragonne'
-  },
-  {
-    male: 'Un voleur',
-    female: 'Une voleuse'
-  },
-  {
-    male: 'Un politicien',
-    female: 'Une politicienne'
-  },
-  {
-    male: 'Un zombie',
-    female: 'Une zombie'
-  },
-  {
-    male: 'Un chaton diabolique du chaos',
-    female: 'Une chatonne diabolique du chaos'
+var getValue = function (type, constraints, appliedConstraints) {
+  var source = data[type + 's']
+  var result = au.pickRandom(source)
+  var genderVal = ru.random(1) > 0
+
+  // Apply potential constraints
+  if (appliedConstraints[type]) {
+    if (constraints[type] != null) result = source[constraints[type]]
+    if (constraints[type + '_gender'] != null) genderVal = constraints[type + '_gender']
   }
-]
 
-var weapons = [
-  'un miroir ou un poudrier',
-  'une statuette',
-  'un filtre ou une potion',
-  'un bijou',
-  'une épée',
-  'un livre ou un grimoire'
-]
+  // if the result has a male and female declinasion, set it to one of this values
+  if (result.male && result.female) result = genderVal ? result.female : result.male
 
-var antagonists = protagonists
+  return result
+}
 
-var places = [
-  'dans une forêt',
-  'sur la Lune',
-  'dans un cimetière',
-  'dans un laboratoire',
-  'dans un château',
-  'dans un bar ou une taverne'
-]
+var data = {
+  protagonists: [
+    {
+      male: 'Un scientifique',
+      female: 'Une scientifique'
+    },
+    {
+      male: 'Un prince',
+      female: 'Une princesse'
+    },
+    {
+      male: 'Un policier',
+      female: 'Une policière'
+    },
+    {
+      male: 'Un journaliste',
+      female: 'Une journaliste'
+    },
+    {
+      male: 'Un médecin',
+      female: 'Une médecin'
+    },
+    {
+      male: 'Un superhéros',
+      female: 'Une superhéroïne'
+    },
+    {
+      male: 'Un robot fou',
+      female: 'Une robot folle'
+    },
+    {
+      male: 'Un dragon',
+      female: 'Une dragonne'
+    },
+    {
+      male: 'Un voleur',
+      female: 'Une voleuse'
+    },
+    {
+      male: 'Un politicien',
+      female: 'Une politicienne'
+    },
+    {
+      male: 'Un zombie',
+      female: 'Une zombie'
+    },
+    {
+      male: 'Un chaton diabolique du chaos',
+      female: 'Une chatonne diabolique du chaos'
+    }
+  ],
+  weapons: [
+    'un miroir ou un poudrier',
+    'une statuette',
+    'un filtre ou une potion',
+    'un bijou',
+    'une épée',
+    'un livre ou un grimoire'
+  ],
+  antagonists: [
+    {
+      male: 'Un scientifique',
+      female: 'Une scientifique'
+    },
+    {
+      male: 'Un prince',
+      female: 'Une princesse'
+    },
+    {
+      male: 'Un policier',
+      female: 'Une policière'
+    },
+    {
+      male: 'Un journaliste',
+      female: 'Une journaliste'
+    },
+    {
+      male: 'Un médecin',
+      female: 'Une médecin'
+    },
+    {
+      male: 'Un superhéros',
+      female: 'Une superhéroïne'
+    },
+    {
+      male: 'Un robot fou',
+      female: 'Une robot folle'
+    },
+    {
+      male: 'Un dragon',
+      female: 'Une dragonne'
+    },
+    {
+      male: 'Un voleur',
+      female: 'Une voleuse'
+    },
+    {
+      male: 'Un politicien',
+      female: 'Une politicienne'
+    },
+    {
+      male: 'Un zombie',
+      female: 'Une zombie'
+    },
+    {
+      male: 'Un chaton diabolique du chaos',
+      female: 'Une chatonne diabolique du chaos'
+    }
+  ],
+  places: [
+    'dans une forêt',
+    'sur la Lune',
+    'dans un cimetière',
+    'dans un laboratoire',
+    'dans un château',
+    'dans un bar ou une taverne'
+  ]
+}

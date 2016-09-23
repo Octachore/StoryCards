@@ -2,6 +2,7 @@
   <div class="generator">
     <div class="ui segment" v-if="protagonist !== null">
       <p>
+        {{ toto }}
         <p class="ui green label">{{ protagonist }}</p> avec
         <p class="ui gray label">{{ weapon }}</p> contre
         <p class="ui red label">{{ antagonist | lowercase }}</p>
@@ -16,6 +17,7 @@
 
 <script>
 var gen = require('../services/generator.service')
+import { getConstraints, getAppliedConstraints } from '../vuex/getters.js'
 
 export default {
   data () {
@@ -27,15 +29,19 @@ export default {
       place: null
     }
   },
-  computed: {
-  },
   methods: {
     generate: function () {
-      var data = gen.generate()
+      var data = gen.generate(this.constraints, this.appliedConstraints)
       this.protagonist = data.protagonist
       this.weapon = data.weapon
       this.antagonist = data.antagonist
       this.place = data.place
+    }
+  },
+  vuex: {
+    getters: {
+      constraints: getConstraints,
+      appliedConstraints: getAppliedConstraints
     }
   }
 }
@@ -45,7 +51,7 @@ export default {
   .generator {
     margin-top:50px;
   }
-  
+
   .ui.compact.segments {
     display: inline-flex;
   }

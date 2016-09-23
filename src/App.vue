@@ -12,6 +12,7 @@ import Hello from './components/Hello'
 import Generator from './components/Generator'
 import Settings from './components/Settings'
 import Notice from './components/Notice'
+import store from './vuex/store.js'
 
 export default {
   components: {
@@ -19,7 +20,8 @@ export default {
     Generator,
     Settings,
     Notice
-  }
+  },
+  store
 }
 </script>
 

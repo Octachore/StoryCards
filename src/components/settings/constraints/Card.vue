@@ -2,15 +2,15 @@
   <div class="{{ color }} card">
     <div class="content">
       <div class="header">{{ title }}</div>
-      <div class="description">
-        <selector v-bind:name="title" v-bind:data="data"></selector>
-        <selector v-if="optional_data" name="Genre" v-bind:data="optional_data"></selector>
+      <div v-if="show" class="description">
+        <selector :title="title" :data="data" v-ref:select1 :constraint="target"></selector>
+        <selector v-if="optional_data" title="Genre" :data="optional_data" :constraint="genderConstraint"></selector>
       </div>
     </div>
     <div class="extra content">
-      <div class="ui toggle checkbox">
-        <input name="public" type="checkbox">
-        <label>Activer la contrainte</label>
+      <div class="ui checkbox">
+        <input id="{{ target }}_constraint_switch" name="public" type="checkbox" v-model="switch" @change="switchConstraintApplication(target, switch)">
+        <label for="{{ target }}_constraint_switch">Activer la contrainte</label>
       </div>
     </div>
   </div>
@@ -18,16 +18,34 @@
 
 <script>
 import Selector from './Selector'
+import { setConstraintApplication } from '../../../vuex/actions.js'
+import { getAppliedConstraints } from '../../../vuex/getters.js'
 
 export default {
+  data () {
+    return {
+      switch: false
+    }
+  },
   components: {
     Selector
   },
-  props: ['title', 'data', 'optional_data', 'color'],
-  ready: function () {
-    $('.ui.checkbox').checkbox()
-    console.log(this.color)
-    console.log(this.title)
+  computed: {
+    genderConstraint: function () {
+      return this.target + '_gender'
+    },
+    show: function () {
+      return this.appliedConstraints[this.target]
+    }
+  },
+  props: ['title', 'data', 'optional_data', 'color', 'target'],
+  vuex: {
+    getters: {
+      appliedConstraints: getAppliedConstraints
+    },
+    actions: {
+      switchConstraintApplication: setConstraintApplication
+    }
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div class="settings-bar" v-show="display">
     <div class="ui cards two column stackable grid container">
-      <card title="Protagonistes" color="green" v-bind:data="computeGenric(gen.getProtagonists())" v-bind:optional_data="genders"></card>
-      <card title="Armes" color="grey" v-bind:data="gen.getWeapons()"></card>
-      <card title="Antagonistes" color="red" v-bind:data="computeGenric(gen.getAntagonists())" v-bind:optional_data="genders"></card>
-      <card title="Lieux" color="grey" v-bind:data="gen.getPlaces()"></card>
+      <card title="Protagonistes" color="green" v-bind:data="computeGenric(gen.getProtagonists())" v-bind:optional_data="genders" target="protagonist"></card>
+      <card title="Armes" color="grey" v-bind:data="gen.getWeapons()" target="weapon"></card>
+      <card title="Antagonistes" color="red" v-bind:data="computeGenric(gen.getAntagonists())" v-bind:optional_data="genders" target="antagonist"></card>
+      <card title="Lieux" color="grey" v-bind:data="gen.getPlaces()"  target="place"></card>
     </div>
   </div>
 </template>
@@ -26,7 +26,6 @@
     },
     events: {
       'display-constraint-toggle': function () {
-        console.log('event received in second child')
         this.display = !this.display
       }
     },

@@ -23,12 +23,12 @@ var getValue = function (type, constraints, appliedConstraints) {
 
   // Apply potential constraints
   if (appliedConstraints[type]) {
-    if (constraints[type] != null) result = source[constraints[type]]
+    if (constraints[type] != null) result = constraints[type]
     if (constraints[type + '_gender'] != null) genderVal = constraints[type + '_gender']
   }
 
   // if the result has a male and female declinasion, set it to one of this values
-  if (result.male && result.female) result = genderVal ? result.female : result.male
+  if (result.male && result.female) result = genderVal ? result.male : result.female
 
   return result
 }
